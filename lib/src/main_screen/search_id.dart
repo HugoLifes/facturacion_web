@@ -279,9 +279,28 @@ class _MyHomePageState extends State<MyHomePage> {
     res = await dio.post(uri, data: {
       "params": {'id': id, 'type_operation': type}
     });
+    for (var c in res.data['result']) {
+      ids = IdModel(
+          id: c['socio_id'],
+          name: c['name'],
+          email: c['email'] == false ? 'No dato' : c['email'],
+          phone: c['phone'] == false ? 'No dato' : c['phone'],
+          rfc: c['RFC'] == false ? 'No dato' : c['RFC']);
 
-    print(res.data['jsonrpc']);
-
-    for (var c in res.data['results']) {}
+      for (var x in c['order']) {
+        orders!.add(OrderM(
+            id: x['id'],
+            name: x['name'],
+            socioId: x['socio_id'],
+            dateOrder: DateTime.tryParse(x['date_order']),
+            ref: x['pos_reference'],
+            montoPagado: x['amount_paid'],
+            cambio: x['amount_return'],
+            status: x['state'],
+            fechaCreacion: DateTime.tryParse(x['create_date'])));
+      }
+    }
+    print(ids!.name);
+    print(orders!.first.name);
   }
 }

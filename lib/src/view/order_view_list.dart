@@ -2,8 +2,9 @@ import 'package:facturacion_web/src/main_screen/model/query_model.dart';
 import 'package:flutter/material.dart';
 
 class OrderViewList extends StatefulWidget {
-  OrderViewList({super.key, this.order});
+  OrderViewList({super.key, this.order, this.idmodel});
   List<OrderM>? order = [];
+  IdModel? idmodel;
   @override
   State<OrderViewList> createState() => _OrderViewListState();
 }
