@@ -15,10 +15,15 @@ class _OrderViewListState extends State<OrderViewList> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(onPressed: () {
+          widget.idmodel = IdModel();
+          widget.order!.clear();
+          Navigator.pop(context);
+        }),
         centerTitle: true,
         backgroundColor: Colors.blue,
-        title: const Text(
-          'Ordenes',
+        title: Text(
+          '${widget.idmodel!.name}',
           style: TextStyle(fontSize: 25),
         ),
       ),
@@ -58,11 +63,11 @@ class _OrderViewListState extends State<OrderViewList> {
                     Text('id: ${widget.order![data].id}'),
                     Text('name: ${widget.order![data].name}'),
                     Text('fecha: ${widget.order![data].dateOrder}'),
-                    Text('Monto Pagado: '),
-                    Text('Monto Total: '),
+                    Text('Monto Pagado: ${widget.order![data].montoPagado}'),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Cambio: '),
+                        Text('Cambio: ${widget.order![data].cambio} '),
                         TextButton(
                             onPressed: () {
                               print('facturado');

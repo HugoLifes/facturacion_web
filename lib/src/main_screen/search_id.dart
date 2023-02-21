@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:facturacion_web/src/main_screen/model/form_model.dart';
 import 'package:facturacion_web/src/main_screen/model/query_model.dart';
 import 'package:facturacion_web/src/view/order_view_list.dart';
@@ -45,6 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       body: LoaderOverlay(
+        overlayColor: Colors.grey,
+        overlayWidget: const Center(child: CircularProgressIndicator()),
         child: ListView(
           padding: EdgeInsets.only(
               right: size.width > 800
@@ -164,18 +166,36 @@ class _MyHomePageState extends State<MyHomePage> {
   ) {
     return InkWell(
       onTap: () async {
-        final idInfo = tk.text;
-        final idInfo2 = tk2.text;
-        final idInfo3 = tk3.text;
-        print('1:$idInfo');
-        print('2:$idInfo2');
-        print('3:$idInfo3');
-        if (tk.text.isNotEmpty) {
+        if (tk.text.isNotEmpty && tk2.text.isNotEmpty && tk3.text.isNotEmpty) {
+          showToast(
+            'Solo un campo a la vez',
+            context: context,
+            animation: StyledToastAnimation.scale,
+            reverseAnimation: StyledToastAnimation.fade,
+            position: StyledToastPosition.center,
+            animDuration: Duration(seconds: 1),
+            duration: Duration(seconds: 4),
+            curve: Curves.elasticOut,
+            reverseCurve: Curves.linear,
+          );
+        } else if (tk.text.isNotEmpty) {
           idConfirmation(context, 1);
         } else if (tk2.text.isNotEmpty) {
           idConfirmation(context, 2);
         } else if (tk3.text.isNotEmpty) {
           idConfirmation(context, 3);
+        } else if (tk.text.isEmpty && tk2.text.isEmpty && tk3.text.isEmpty) {
+          showToast(
+            'Lo sentimos, no puede haber campos vacios',
+            context: context,
+            animation: StyledToastAnimation.scale,
+            reverseAnimation: StyledToastAnimation.fade,
+            position: StyledToastPosition.center,
+            animDuration: Duration(seconds: 1),
+            duration: Duration(seconds: 4),
+            curve: Curves.elasticOut,
+            reverseCurve: Curves.linear,
+          );
         }
       },
       child: Container(
@@ -206,11 +226,18 @@ class _MyHomePageState extends State<MyHomePage> {
       case 1:
         print('Uno');
         if (_OrdenIdformKey!.currentState!.validate()) {
-          context.loaderOverlay
-              .show(widget: const Center(child: CircularProgressIndicator()));
+          context.loaderOverlay.show();
           orderResponse(type, tk.text)
-              .then((value) => {})
-              .whenComplete(() => {context.loaderOverlay.hide()});
+              .then((value) => {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => OrderViewList(
+                                  order: orders,
+                                  idmodel: ids,
+                                )))
+                  })
+              .whenComplete(() => {context.loaderOverlay.hide(), tk.clear()});
         } else {
           print('Algo salio mal');
         }
@@ -219,11 +246,18 @@ class _MyHomePageState extends State<MyHomePage> {
       case 2:
         print('Dos');
         if (_RFCformKey!.currentState!.validate()) {
-          context.loaderOverlay
-              .show(widget: const Center(child: CircularProgressIndicator()));
+          context.loaderOverlay.show();
           orderResponse(type, tk2.text)
-              .then((value) => null)
-              .whenComplete(() => {context.loaderOverlay.hide()});
+              .then((value) => {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => OrderViewList(
+                                  order: orders,
+                                  idmodel: ids,
+                                )))
+                  })
+              .whenComplete(() => {context.loaderOverlay.hide(), tk2.clear()});
         } else {
           print('Algo salio mal');
         }
@@ -231,11 +265,18 @@ class _MyHomePageState extends State<MyHomePage> {
       case 3:
         print('Tres');
         if (_SocioIDformKey!.currentState!.validate()) {
-          context.loaderOverlay
-              .show(widget: const Center(child: CircularProgressIndicator()));
+          context.loaderOverlay.show();
           orderResponse(type, tk3.text)
-              .then((value) => {})
-              .whenComplete(() => {context.loaderOverlay.hide()});
+              .then((value) => {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => OrderViewList(
+                                  order: orders,
+                                  idmodel: ids,
+                                )))
+                  })
+              .whenComplete(() => {context.loaderOverlay.hide(), tk3.clear()});
         } else {
           print('Algo salio mal');
         }
