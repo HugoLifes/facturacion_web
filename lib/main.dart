@@ -1,10 +1,11 @@
 import 'package:facturacion_web/src/main_screen/search_id.dart';
 import 'package:flutter/material.dart';
 import 'package:odoo/odoo.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
-  Odoo odoo = Odoo(
-      Connection(url: Url(Protocol.http, "localhost", 8069), db: 'hugodb'));
+  Odoo odoo =
+      Odoo(Connection(url: Url(Protocol.http, "localhost", 8069), db: 'odoo'));
 
   odoo.session.stream.listen((event) {
     print('session changed ${event?.toJson()}');
@@ -19,6 +20,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   Odoo? odoo;
   UserLoggedIn? user;
+
   MyApp({
     super.key,
     this.odoo,
@@ -32,8 +34,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          primarySwatch: Colors.blue,
+          textTheme: GoogleFonts.montserratTextTheme()),
       home: MyHomePage(
         title: 'Bienvenido',
         odoo: odoo,

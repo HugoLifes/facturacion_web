@@ -1,6 +1,8 @@
 import 'package:facturacion_web/src/main_screen/model/query_model.dart';
 import 'package:flutter/material.dart';
 
+import '../main_screen/model/font_style_model.dart';
+
 class OrderViewList extends StatefulWidget {
   OrderViewList({super.key, this.order, this.idmodel});
   List<OrderM>? order = [];
@@ -14,7 +16,29 @@ class _OrderViewListState extends State<OrderViewList> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+          elevation: 8,
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text('Facturado'),
+              elevation: 6,
+              action: SnackBarAction(
+                label: 'Cerrar',
+                onPressed: () {},
+              ),
+            ));
+          },
+          icon: Icon(Icons.receipt),
+          label: Row(
+            children: const [
+              Text(
+                'Facturar',
+                style: TextStyle(fontSize: 15),
+              )
+            ],
+          )),
       appBar: AppBar(
+        elevation: 7,
         leading: BackButton(onPressed: () {
           widget.idmodel = IdModel();
           widget.order!.clear();
@@ -60,19 +84,89 @@ class _OrderViewListState extends State<OrderViewList> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text('id: ${widget.order![data].id}'),
-                    Text('name: ${widget.order![data].name}'),
-                    Text('fecha: ${widget.order![data].dateOrder}'),
-                    Text('Monto Pagado: ${widget.order![data].montoPagado}'),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Cambio: ${widget.order![data].cambio} '),
-                        TextButton(
-                            onPressed: () {
-                              print('facturado');
-                            },
-                            child: Text('Facturar'))
+                        const Text(
+                          'ID Socio:',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        Text(
+                          '${widget.order![data].id}',
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w400),
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          'Nombre:',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        Text(
+                          '${widget.order![data].name}',
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          'Fecha:',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        Text(
+                          '${widget.order![data].dateOrder}',
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          'Monto Pagado:',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        Text(
+                          '${widget.order![data].montoPagado}',
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w400),
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          'Cambio:',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        Text(
+                          '${widget.order![data].cambio}',
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w400),
+                        )
                       ],
                     )
                   ]),
@@ -80,4 +174,9 @@ class _OrderViewListState extends State<OrderViewList> {
           }),
     );
   }
+}
+
+class CardData {
+  CardData({this.title});
+  String? title;
 }
