@@ -2,6 +2,7 @@ import 'package:facturacion_web/src/main_screen/search_id.dart';
 import 'package:flutter/material.dart';
 import 'package:odoo/odoo.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sidebarx/sidebarx.dart';
 
 void main() async {
   Odoo odoo =
@@ -34,7 +35,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColor: primaryColor,
+          canvasColor: canvasColor,
+          scaffoldBackgroundColor: scaffoldBackgroundColor,
           textTheme: GoogleFonts.montserratTextTheme()),
       home: MyHomePage(
         title: 'Bienvenido',
@@ -43,3 +46,14 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+const primaryColor = Color(0xFF0061a4);
+const canvasColor = Color(0xFFffffff);
+const scaffoldBackgroundColor = Color(0xFFffffff);
+const accentCanvasColor = Color(0xFFd7e3f8);
+const white = Colors.white;
+final actionColor = Color(0xFFd1e4ff);
+final divider = Divider(color: accentCanvasColor, height: 1);
+const colorIcon = Color(0xFF1a1c1e);
+const unselectColor = Color(0xFF535f70);
+const selectColor = Color(0xFFdde4ff);

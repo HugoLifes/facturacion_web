@@ -1,10 +1,11 @@
+import 'package:facturacion_web/main.dart';
 import 'package:flutter/material.dart';
 
 class FormModel {
-  FormModel(this.text, this.key, this.token);
+  FormModel({this.text, this.key, this.token});
 
   String? text;
-  GlobalKey<FormState> key = GlobalKey<FormState>();
+  GlobalKey<FormState>? key = GlobalKey<FormState>();
   TextEditingController? token;
 
   Widget idForm() {
@@ -17,12 +18,12 @@ class FormModel {
           autofocus: false,
           decoration: InputDecoration(
               enabledBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blue, width: 2)),
+                  borderSide: BorderSide(color: primaryColor, width: 2)),
               hintText: text,
               hintStyle: const TextStyle(color: Colors.grey, fontSize: 18),
               prefixIcon: const Icon(
                 Icons.search,
-                color: Colors.blue,
+                color: primaryColor,
               )),
           validator: (v) {
             if (v!.isEmpty) {

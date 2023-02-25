@@ -1,4 +1,5 @@
-import 'dart:convert';
+import 'package:facturacion_web/main.dart';
+import 'package:facturacion_web/src/widgets/list_tile.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:facturacion_web/src/main_screen/model/form_model.dart';
 import 'package:facturacion_web/src/main_screen/model/query_model.dart';
@@ -80,9 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: const [
                     BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 10,
-                        offset: Offset(0, 5))
+                        color: Colors.grey, blurRadius: 5, offset: Offset(0, 5))
                   ]),
               child: Container(
                 child: Column(
@@ -94,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           'Bienvenido',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Colors.blue,
+                              color: primaryColor,
                               fontSize: 22),
                         ),
                       ),
@@ -107,50 +106,25 @@ class _MyHomePageState extends State<MyHomePage> {
                       const SizedBox(
                         height: 5,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ExpansionTile(
-                          title: const Text(
-                            'OrdenID',
-                            style: TextStyle(fontWeight: FontWeight.w600),
-                          ),
-                          subtitle: const Text(
-                              'Crea tu factura por ID orden de compra',
-                              style: TextStyle(fontWeight: FontWeight.w400)),
-                          children: <Widget>[
-                            FormModel('OrdenID', _OrdenIdformKey!, tk).idForm()
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ExpansionTile(
-                          title: const Text(
-                            'RFC',
-                            style: TextStyle(fontWeight: FontWeight.w600),
-                          ),
-                          subtitle: const Text('Crea tus facturas por RFC',
-                              style: TextStyle(fontWeight: FontWeight.w400)),
-                          children: <Widget>[
-                            FormModel('RFC', _RFCformKey!, tk2).idForm()
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ExpansionTile(
-                          title: const Text(
-                            'ID Socio',
-                            style: TextStyle(fontWeight: FontWeight.w600),
-                          ),
-                          subtitle: const Text('Facture con su id de socio',
-                              style: TextStyle(fontWeight: FontWeight.w400)),
-                          children: <Widget>[
-                            FormModel('ID Socio', _SocioIDformKey!, tk3)
-                                .idForm()
-                          ],
-                        ),
-                      ),
+                      CustomListTile(
+                              titleString: 'OrdenID',
+                              subTitleString:
+                                  'Crea tu factura por ID orden de compra',
+                              okey: _OrdenIdformKey!,
+                              tk: tk)
+                          .customTile(),
+                      CustomListTile(
+                              titleString: 'RFC',
+                              subTitleString: 'Crea tus facturas por RFC',
+                              okey: _RFCformKey,
+                              tk: tk2)
+                          .customTile(),
+                      CustomListTile(
+                              titleString: 'ID Socio',
+                              subTitleString: 'Facture con su id de socio',
+                              okey: _SocioIDformKey!,
+                              tk: tk3)
+                          .customTile(),
                       okButton(context)
                     ]),
               ),
@@ -200,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
       },
       child: Container(
         decoration: const BoxDecoration(
-            color: Colors.blue,
+            color: primaryColor,
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20))),
