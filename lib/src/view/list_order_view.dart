@@ -19,7 +19,21 @@ class OrderCards extends StatelessWidget {
         builder: (context, child) {
           switch (controller.selectedIndex) {
             case 0:
-              return buildView(size, theme);
+              return Stack(
+                children: [
+                  Container(
+                      padding: EdgeInsets.all(13),
+                      child: Text(
+                        'Orden de compra',
+                        style: theme.textTheme.headlineSmall,
+                      )),
+                  Container(
+                    padding: const EdgeInsets.only(top: 33),
+                    width: size.width > 600 ? size.width * 0.8 : 500,
+                    child: buildView(size, theme),
+                  ),
+                ],
+              );
             case 1:
               return Text(
                 'Order Status',
@@ -46,7 +60,7 @@ class OrderCards extends StatelessWidget {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: size.width > 800
               ? size.width > 900
-                  ? 3
+                  ? 2
                   : 2
               : 1,
           childAspectRatio: size.width > 800
@@ -82,7 +96,7 @@ class OrderCards extends StatelessWidget {
                         width: 12,
                       ),
                       Text(
-                        '${order![data].id}',
+                        '${order![data].socioId}',
                         style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w400),
                       )
@@ -116,7 +130,7 @@ class OrderCards extends StatelessWidget {
                         width: 12,
                       ),
                       Text(
-                        '${order![data].dateOrder}',
+                        '${order![data].dateOrder!.day}/0${order![data].dateOrder!.month}/${order![data].dateOrder!.year} ',
                         style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w400),
                       ),

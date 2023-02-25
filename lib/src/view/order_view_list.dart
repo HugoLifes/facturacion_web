@@ -19,6 +19,7 @@ class _OrderViewListState extends State<OrderViewList> {
   final _key = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
           backgroundColor: primaryColor,
