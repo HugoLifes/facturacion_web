@@ -57,3 +57,11 @@ final divider = Divider(color: accentCanvasColor, height: 1);
 const colorIcon = Color(0xFF1a1c1e);
 const unselectColor = Color(0xFF535f70);
 const selectColor = Color(0xFFdde4ff);
+
+TextStyle largeText =
+    GoogleFonts.montserrat(fontSize: 30, fontWeight: FontWeight.bold);
+
+TextStyle normalText = GoogleFonts.montserrat(fontSize: 15);
+
+TextStyle rowText =
+    GoogleFonts.montserrat(fontSize: 16, fontWeight: FontWeight.w400);

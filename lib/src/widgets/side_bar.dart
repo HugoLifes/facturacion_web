@@ -73,8 +73,8 @@ class _SideBarState extends State<SideBar> {
             onTap: () {
               debugPrint('Hello');
             }),
-        SidebarXItem(icon: Icons.view_column, label: 'Profile'),
-        SidebarXItem(icon: Icons.person, label: 'Buscar'),
+        SidebarXItem(icon: Icons.view_column, label: 'Status'),
+        SidebarXItem(icon: Icons.person, label: 'Perfil'),
       ],
     );
   }

@@ -1,3 +1,4 @@
+import 'package:facturacion_web/src/widgets/order_status_view.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 
@@ -22,10 +23,11 @@ class OrderCards extends StatelessWidget {
               return Stack(
                 children: [
                   Container(
-                      padding: EdgeInsets.all(13),
-                      child: Text(
+                      padding: const EdgeInsets.all(13),
+                      child: const Text(
                         'Orden de compra',
-                        style: theme.textTheme.headlineSmall,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
                       )),
                   Container(
                     padding: const EdgeInsets.only(top: 33),
@@ -35,14 +37,33 @@ class OrderCards extends StatelessWidget {
                 ],
               );
             case 1:
-              return Text(
-                'Order Status',
-                style: theme.textTheme.headlineSmall,
+              return Stack(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(13),
+                    child: const Text(
+                      'Order Status',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    ),
+                  ),
+                  Container(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: OrderStatusView(order: order, idmodel: idmodel))
+                ],
               );
             case 2:
-              return Text(
-                'Prefil',
-                style: theme.textTheme.headlineSmall,
+              return Stack(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(13),
+                    child: const Text(
+                      'Prefil',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    ),
+                  ),
+                ],
               );
             default:
               return Text(
