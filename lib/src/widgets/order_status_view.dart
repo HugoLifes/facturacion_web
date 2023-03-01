@@ -14,16 +14,19 @@ class OrderStatusView extends StatefulWidget {
 class _OrderStatusViewState extends State<OrderStatusView> {
   dynamic dataColumn = {"ID", "Nombre", "Fecha", "Referencia"};
   bool selectAll = false;
+  List addOrders = [];
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 25),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: DataTable(
+              columnSpacing: size.width * 0.1,
               onSelectAll: (value) {
                 if (value!) {
                   setState(() {
@@ -35,8 +38,8 @@ class _OrderStatusViewState extends State<OrderStatusView> {
                   });
                 }
               },
-              sortAscending: false,
-              dataRowHeight: 30,
+              sortAscending: true,
+              dataRowHeight: 43,
               columns: [
                 ...dataColumn!
                     .map((e) => DataColumn(
@@ -55,9 +58,19 @@ class _OrderStatusViewState extends State<OrderStatusView> {
               ],
               rows: [
                 ...widget.order!.map((e) => DataRow(
-                        selected: selectAll,
+                        selected: selectAll == true
+                            ? selectAll
+                            : addOrders.contains(e),
                         onSelectChanged: (v) {
-                          if (v!) {}
+                          if (v!) {
+                            setState(() {
+                              addOrders.add(e);
+                            });
+                          } else {
+                            setState(() {
+                              addOrders.remove(e);
+                            });
+                          }
                         },
                         cells: [
                           DataCell(
@@ -73,7 +86,7 @@ class _OrderStatusViewState extends State<OrderStatusView> {
                             textAlign: TextAlign.center,
                           )),
                           DataCell(Text(
-                            "${e.dateOrder!.day}/${e.dateOrder!.month}/${e.dateOrder!.year}",
+                            "${e.dateOrder!.day}/0${e.dateOrder!.month}/${e.dateOrder!.year}",
                             style: rowText,
                             textAlign: TextAlign.center,
                           )),

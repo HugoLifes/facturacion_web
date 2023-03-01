@@ -1,3 +1,4 @@
+import 'package:facturacion_web/src/widgets/data_account.dart';
 import 'package:facturacion_web/src/widgets/order_status_view.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
@@ -23,14 +24,21 @@ class OrderCards extends StatelessWidget {
               return Stack(
                 children: [
                   Container(
-                      padding: const EdgeInsets.all(13),
+                      height: 100,
+                      decoration: const BoxDecoration(
+                          color: accentCanvasColor,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              bottomLeft: Radius.circular(20)))),
+                  Container(
+                      padding: const EdgeInsets.all(15),
                       child: const Text(
                         'Orden de compra',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 22),
+                            fontWeight: FontWeight.bold, fontSize: 25),
                       )),
                   Container(
-                    padding: const EdgeInsets.only(top: 33),
+                    padding: const EdgeInsets.only(top: 55, left: 10),
                     width: size.width > 600 ? size.width * 0.8 : 500,
                     child: buildView(size, theme),
                   ),
@@ -40,15 +48,22 @@ class OrderCards extends StatelessWidget {
               return Stack(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(13),
+                      height: 200,
+                      decoration: const BoxDecoration(
+                          color: accentCanvasColor,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              bottomLeft: Radius.circular(20)))),
+                  Container(
+                    padding: const EdgeInsets.all(15),
                     child: const Text(
                       'Order Status',
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                     ),
                   ),
                   Container(
-                      padding: const EdgeInsets.only(top: 15),
+                      padding: const EdgeInsets.only(top: 20),
                       child: OrderStatusView(order: order, idmodel: idmodel))
                 ],
               );
@@ -56,13 +71,26 @@ class OrderCards extends StatelessWidget {
               return Stack(
                 children: [
                   Container(
+                      height: 145,
+                      decoration: const BoxDecoration(
+                          color: accentCanvasColor,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              bottomLeft: Radius.circular(20)))),
+                  Container(
                     padding: const EdgeInsets.all(13),
                     child: const Text(
-                      'Prefil',
+                      'Datos de cuenta',
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
                     ),
                   ),
+                  Container(
+                    padding: EdgeInsets.only(top: 50, left: 25),
+                    child: DataAccount(
+                      idModel: idmodel,
+                    ),
+                  )
                 ],
               );
             default:

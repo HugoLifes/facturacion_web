@@ -43,23 +43,25 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
+    debugPrint('${size.width}');
+    print('');
     return Scaffold(
       body: LoaderOverlay(
         overlayColor: Colors.grey,
         overlayWidget: const Center(child: CircularProgressIndicator()),
         child: ListView(
           padding: EdgeInsets.only(
-              right: size.width > 800
-                  ? size.width > 900
-                      ? size.width * 0.3
-                      : size.width * 0.3
-                  : size.width * 0.1,
-              left: size.width > 800
-                  ? size.width > 900
-                      ? size.width * 0.3
-                      : size.width * 0.3
-                  : size.width * 0.1),
+            right: size.width < 899
+                ? size.width * 0.1
+                : size.width > 1200
+                    ? size.width * 0.3
+                    : size.width * 0.19,
+            left: size.width < 899
+                ? size.width * 0.1
+                : size.width > 1200
+                    ? size.width * 0.3
+                    : size.width * 0.19,
+          ),
           children: [
             const SizedBox(
               height: 35,
@@ -83,51 +85,49 @@ class _MyHomePageState extends State<MyHomePage> {
                     BoxShadow(
                         color: Colors.grey, blurRadius: 5, offset: Offset(0, 5))
                   ]),
-              child: Container(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(20),
-                        child: const Text(
-                          'Bienvenido',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: primaryColor,
-                              fontSize: 22),
-                        ),
-                      ),
-                      Text(
-                        'Busca tus facturas',
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(20),
+                      child: const Text(
+                        'Bienvenido',
                         style: TextStyle(
-                            color: Colors.grey.withOpacity(1.0),
-                            fontWeight: FontWeight.w500),
+                            fontWeight: FontWeight.bold,
+                            color: primaryColor,
+                            fontSize: 22),
                       ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      CustomListTile(
-                              titleString: 'OrdenID',
-                              subTitleString:
-                                  'Crea tu factura por ID orden de compra',
-                              okey: _OrdenIdformKey!,
-                              tk: tk)
-                          .customTile(),
-                      CustomListTile(
-                              titleString: 'RFC',
-                              subTitleString: 'Crea tus facturas por RFC',
-                              okey: _RFCformKey,
-                              tk: tk2)
-                          .customTile(),
-                      CustomListTile(
-                              titleString: 'ID Socio',
-                              subTitleString: 'Facture con su id de socio',
-                              okey: _SocioIDformKey!,
-                              tk: tk3)
-                          .customTile(),
-                      okButton(context)
-                    ]),
-              ),
+                    ),
+                    Text(
+                      'Busca tus facturas',
+                      style: TextStyle(
+                          color: Colors.grey.withOpacity(1.0),
+                          fontWeight: FontWeight.w500),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    CustomListTile(
+                            titleString: 'OrdenID',
+                            subTitleString:
+                                'Crea tu factura por ID orden de compra',
+                            okey: _OrdenIdformKey!,
+                            tk: tk)
+                        .customTile(),
+                    CustomListTile(
+                            titleString: 'RFC',
+                            subTitleString: 'Crea tus facturas por RFC',
+                            okey: _RFCformKey,
+                            tk: tk2)
+                        .customTile(),
+                    CustomListTile(
+                            titleString: 'ID Socio',
+                            subTitleString: 'Facture con su id de socio',
+                            okey: _SocioIDformKey!,
+                            tk: tk3)
+                        .customTile(),
+                    okButton(context)
+                  ]),
             )
           ],
         ),
