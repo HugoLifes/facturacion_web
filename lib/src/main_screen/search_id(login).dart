@@ -300,7 +300,12 @@ class _MyHomePageState extends State<MyHomePage> {
           name: c['name'],
           email: c['email'] == false ? 'No dato' : c['email'],
           phone: c['phone'] == false ? 'No dato' : c['phone'],
-          rfc: c['RFC'] == false ? 'No dato' : c['RFC']);
+          rfc: c['RFC'] == false ? 'No dato' : c['RFC'],
+          funcion: c['function'] == false ? 'No dato' : c['function'],
+          calle: c['street'] == false ? 'No dato' : c['street'],
+          companyName: c['commercial_company_name'] == false
+              ? 'No dato'
+              : c['commercial_company_name']);
 
       for (var x in c['order']) {
         orders!.add(OrderM(

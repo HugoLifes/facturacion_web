@@ -1,5 +1,6 @@
 import 'package:facturacion_web/src/main_screen/model/query_model.dart';
 import 'package:flutter/material.dart';
+import '../../main.dart';
 
 class DataAccount extends StatefulWidget {
   DataAccount({super.key, this.idModel});
@@ -14,23 +15,106 @@ class _DataAccountState extends State<DataAccount> {
     return Container(
         padding: EdgeInsets.all(13),
         child: Column(children: [
-          Container(
+          profile_view(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.only(top: 50),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    dataStructProfile('Email:', widget.idModel!.email),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    dataStructProfile('Tel:', widget.idModel!.phone),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    dataStructProfile('Compañia:', widget.idModel!.companyName),
+                  ],
+                ),
+              ),
+              const Divider(
+                color: accentCanvasColor,
+              ),
+              Container(
+                padding: const EdgeInsets.only(top: 50),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    dataStructProfile('Funcion:', widget.idModel!.funcion),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    dataStructProfile('Calle:', widget.idModel!.calle),
+                  ],
+                ),
+              ),
+            ],
+          )
+        ]));
+  }
+
+  Row dataStructProfile(String text, dynamic text2) {
+    return Row(
+      children: [
+        Text(
+          '$text',
+          style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+        ),
+        const SizedBox(
+          width: 5,
+        ),
+        Text(
+          '$text2',
+          style: TextStyle(fontSize: 17),
+        ),
+      ],
+    );
+  }
+
+  Row profile_view() {
+    return Row(
+      children: [
+        Flexible(
+          child: Container(
             width: 150,
             height: 150,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100), color: Colors.grey),
+                borderRadius: BorderRadius.circular(100),
+                color: Colors.grey.shade300),
             child: const Icon(
               Icons.person,
-              size: 50,
+              size: 55,
+              color: primaryColor,
             ),
           ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              widget.idModel!.name!,
-              style: TextStyle(fontSize: 30),
-            ),
-          )
-        ]));
+        ),
+        Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.only(bottom: 16, left: 20),
+                child: Text(
+                  widget.idModel!.name!,
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 21),
+                child: Text(
+                  widget.idModel!.rfc!,
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    );
   }
 }

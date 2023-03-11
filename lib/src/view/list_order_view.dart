@@ -48,7 +48,7 @@ class OrderCards extends StatelessWidget {
               return Stack(
                 children: [
                   Container(
-                      height: 200,
+                      height: 100,
                       decoration: const BoxDecoration(
                           color: accentCanvasColor,
                           borderRadius: BorderRadius.only(

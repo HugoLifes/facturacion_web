@@ -1,13 +1,14 @@
 class IdModel {
   //Modelo que sirve para objetualizar el query
-  IdModel({
-    this.id,
-    this.name,
-    this.companyName,
-    this.email,
-    this.phone,
-    this.rfc,
-  });
+  IdModel(
+      {this.id,
+      this.name,
+      this.companyName,
+      this.email,
+      this.phone,
+      this.rfc,
+      this.calle,
+      this.funcion});
 
   int? id;
   String? name;
@@ -15,6 +16,8 @@ class IdModel {
   dynamic phone;
   dynamic companyName;
   String? rfc;
+  dynamic funcion;
+  dynamic calle;
 }
 
 class OrderM {
@@ -28,6 +31,7 @@ class OrderM {
       this.ref,
       this.socioId,
       this.status});
+
   int? id;
   String? name;
   DateTime? dateOrder;
