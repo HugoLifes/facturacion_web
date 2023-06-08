@@ -16,44 +16,47 @@ class _DataAccountState extends State<DataAccount> {
         padding: EdgeInsets.all(13),
         child: Column(children: [
           profile_view(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: const EdgeInsets.only(top: 50),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    dataStructProfile('Email:', widget.idModel!.email),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    dataStructProfile('Tel:', widget.idModel!.phone),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    dataStructProfile('Compañia:', widget.idModel!.companyName),
-                  ],
+          Container(
+            padding: EdgeInsets.only(left: 20),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      dataStructProfile('Email:', widget.idModel!.email),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      dataStructProfile('Tel:', widget.idModel!.phone),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      dataStructProfile(
+                          'Compañia:', widget.idModel!.companyName),
+                    ],
+                  ),
                 ),
-              ),
-              const Divider(
-                color: accentCanvasColor,
-              ),
-              Container(
-                padding: const EdgeInsets.only(top: 50),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    dataStructProfile('Funcion:', widget.idModel!.funcion),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    dataStructProfile('Calle:', widget.idModel!.calle),
-                  ],
+                SizedBox(
+                  width: 15,
                 ),
-              ),
-            ],
+                Container(
+                  padding: const EdgeInsets.only(top: 50, left: 40),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      dataStructProfile('Funcion:', widget.idModel!.funcion),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      dataStructProfile('Calle:', widget.idModel!.calle),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           )
         ]));
   }
@@ -96,6 +99,7 @@ class _DataAccountState extends State<DataAccount> {
         Flexible(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
                 padding: const EdgeInsets.only(bottom: 16, left: 20),

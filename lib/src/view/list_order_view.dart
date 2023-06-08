@@ -130,96 +130,102 @@ class OrderCards extends StatelessWidget {
                   BoxShadow(
                       color: Colors.grey, blurRadius: 5, offset: Offset(0, 5))
                 ]),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    children: [
-                      const Text(
-                        'ID Socio:',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      Text(
-                        '${order![data].socioId}',
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w400),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Text(
-                        'Nombre:',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      Text(
-                        '${order![data].name}',
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w400),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Text(
-                        'Fecha:',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      Text(
-                        '${order![data].dateOrder!.day}/0${order![data].dateOrder!.month}/${order![data].dateOrder!.year} ',
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w400),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Text(
-                        'Monto Pagado:',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      Text(
-                        '${order![data].montoPagado}',
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w400),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Text(
-                        'Cambio:',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      Text(
-                        '${order![data].cambio!.toStringAsFixed(1)}',
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w400),
-                      )
-                    ],
-                  )
-                ]),
+            child: InkWell(
+              hoverColor: accentCanvasColor,
+              onTap: () {
+                debugPrint('Hola!');
+              },
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      children: [
+                        const Text(
+                          'ID Socio:',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        Text(
+                          '${order![data].socioId}',
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w400),
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          'Nombre:',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        Text(
+                          '${order![data].name}',
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          'Fecha:',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        Text(
+                          '${order![data].dateOrder!.day}/0${order![data].dateOrder!.month}/${order![data].dateOrder!.year} ',
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          'Monto Pagado:',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        Text(
+                          '${order![data].montoPagado}',
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w400),
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          'Cambio:',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        Text(
+                          '${order![data].cambio!.toStringAsFixed(1)}',
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w400),
+                        )
+                      ],
+                    )
+                  ]),
+            ),
           );
         });
   }
